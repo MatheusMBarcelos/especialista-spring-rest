@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @AllArgsConstructor
@@ -17,10 +18,12 @@ public class CadastroEstadoService {
     public static final String MSG_ESTADO_EM_USO = "Estado de código %d não pode ser removido, pois está em uso";
     private EstadoRepository estadoRepository;
 
+    @Transactional
     public Estado salvar(Estado estado) {
         return estadoRepository.save(estado);
     }
 
+    @Transactional
     public void excluir(Long estadoId) {
         try {
             estadoRepository.deleteById(estadoId);
@@ -34,6 +37,7 @@ public class CadastroEstadoService {
         }
     }
 
+    @Transactional(readOnly = true)
     public Estado buscarOuFalhar(Long estadoId) {
         return estadoRepository.findById(estadoId)
                 .orElseThrow(() -> new EstadoNaoEncontradoException(estadoId));
