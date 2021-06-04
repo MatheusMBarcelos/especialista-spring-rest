@@ -30,12 +30,12 @@ public class Restaurante {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
+//    @NotBlank
     @Column(length = 30, nullable = false)
     private String nome;
 
-    @PositiveOrZero
-    @NotNull
+//    @PositiveOrZero
+//    @NotNull
     @Column(name = "taxa_frete", nullable = false)
     private BigDecimal taxaFrete;
 
@@ -47,9 +47,9 @@ public class Restaurante {
     @Column(nullable = false, columnDefinition = "datetime")
     private OffsetDateTime dataAtualizacao;
 
-    @Valid
-    @ConvertGroup(from = Default.class, to = Groups.CozinhaId.class )
-    @NotNull
+//    @Valid
+//    @ConvertGroup(from = Default.class, to = Groups.CozinhaId.class )
+//    @NotNull
     @ManyToOne
     @JoinColumn(name = "cozinha_id", nullable = false)
     private Cozinha cozinha;

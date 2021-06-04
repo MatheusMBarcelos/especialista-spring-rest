@@ -18,13 +18,13 @@ import java.util.List;
 @Entity
 public class Cozinha {
 
-    @NotNull(groups = Groups.CozinhaId.class)
+//    @NotNull(groups = Groups.CozinhaId.class)
     @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
+//    @NotBlank
     @Column(length = 30, nullable = false)
     private String nome;
 
