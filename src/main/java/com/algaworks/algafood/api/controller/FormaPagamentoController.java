@@ -1,6 +1,6 @@
 package com.algaworks.algafood.api.controller;
 
-import com.algaworks.algafood.api.assembler.FormaPagamentoAssembler;
+import com.algaworks.algafood.api.assembler.FormaPagamentoModelAssembler;
 import com.algaworks.algafood.api.assembler.FormaPagamentoInputDisassembler;
 import com.algaworks.algafood.api.model.FormaPagamentoModel;
 import com.algaworks.algafood.api.model.input.FormaPagamentoInput;
@@ -8,7 +8,6 @@ import com.algaworks.algafood.domain.model.FormaPagamento;
 import com.algaworks.algafood.domain.repository.FormaPagamentoRepository;
 import com.algaworks.algafood.domain.service.CadastroFormaPagamentoService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,21 +21,21 @@ public class FormaPagamentoController {
 
     private FormaPagamentoRepository formaPagamentoRepository;
     private CadastroFormaPagamentoService cadastroFormaPagamentoService;
-    private FormaPagamentoAssembler formaPagamentoAssembler;
+    private FormaPagamentoModelAssembler formaPagamentoModelAssembler;
     private FormaPagamentoInputDisassembler formaPagamentoInputDisassembler;
 
     @GetMapping
     public List<FormaPagamentoModel> listar() {
         List<FormaPagamento> todasFormasPagamento = formaPagamentoRepository.findAll();
 
-        return formaPagamentoAssembler.toCollectionModel(todasFormasPagamento);
+        return formaPagamentoModelAssembler.toCollectionModel(todasFormasPagamento);
     }
 
     @GetMapping("/{formaPagamentoId}")
     public FormaPagamentoModel buscar(@PathVariable Long formaPagamentoId) {
         FormaPagamento formaPagamento = cadastroFormaPagamentoService.buscarOuFalhar(formaPagamentoId);
 
-        return formaPagamentoAssembler.toModel(formaPagamento);
+        return formaPagamentoModelAssembler.toModel(formaPagamento);
     }
 
     @PostMapping
@@ -44,7 +43,7 @@ public class FormaPagamentoController {
     public FormaPagamentoModel adicionar(@RequestBody @Valid FormaPagamentoInput formaPagamentoInput) {
         FormaPagamento formaPagamento = formaPagamentoInputDisassembler.toDomainObject(formaPagamentoInput);
         formaPagamento = cadastroFormaPagamentoService.salvar(formaPagamento);
-        return formaPagamentoAssembler.toModel(formaPagamento);
+        return formaPagamentoModelAssembler.toModel(formaPagamento);
     }
 
     @PutMapping("/{formaPagamentoId}")
@@ -56,7 +55,7 @@ public class FormaPagamentoController {
 
         formaPagamentoAtual = cadastroFormaPagamentoService.salvar(formaPagamentoAtual);
 
-        return formaPagamentoAssembler.toModel(formaPagamentoAtual);
+        return formaPagamentoModelAssembler.toModel(formaPagamentoAtual);
     }
 
     @DeleteMapping("/{formaPagamentoId}")
