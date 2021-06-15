@@ -17,14 +17,14 @@ public class CadastroProdutoService {
 
     private ProdutoRepository produtoRepository;
 
+    @Transactional
+    public Produto salvar(Produto produto) {
+        return produtoRepository.save(produto);
+    }
+
     @Transactional(readOnly = true)
     public Produto buscarOuFalhar(Long restauranteId, Long produtoId) {
         return produtoRepository.findById(restauranteId, produtoId)
                 .orElseThrow(() -> new ProdutoNaoEncontradoException(produtoId, restauranteId));
-    }
-
-    @Transactional
-    public Produto salvar(Produto produto) {
-        return produtoRepository.save(produto);
     }
 }

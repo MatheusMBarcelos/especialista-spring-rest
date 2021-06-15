@@ -52,6 +52,8 @@ public class Restaurante {
 
     private Boolean ativo = Boolean.TRUE;
 
+    private Boolean aberto = Boolean.TRUE;
+
     @Embedded
     private Endereco endereco;
 
@@ -64,19 +66,27 @@ public class Restaurante {
     @OneToMany(mappedBy = "restaurante")
     private List<Produto> produtos = new ArrayList<>();
 
-    public void ativar(){
+    public void ativar() {
         setAtivo(true);
     }
 
-    public void inativar(){
+    public void inativar() {
         setAtivo(false);
     }
 
-    public boolean removerFormaPagamento(FormaPagamento formaPagamento){
+    public void fechar() {
+        setAberto(false);
+    }
+
+    public void abrir() {
+        setAberto(true);
+    }
+
+    public boolean removerFormaPagamento(FormaPagamento formaPagamento) {
         return getFormasPagamento().remove(formaPagamento);
     }
 
-    public boolean adicionarFormaPagamento(FormaPagamento formaPagamento){
+    public boolean adicionarFormaPagamento(FormaPagamento formaPagamento) {
         return getFormasPagamento().add(formaPagamento);
     }
 }
