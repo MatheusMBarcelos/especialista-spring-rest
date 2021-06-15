@@ -17,7 +17,8 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasSize;
 
 
 @ExtendWith(SpringExtension.class)
@@ -76,9 +77,9 @@ class CadastroCozinhaIt {
                 .body(jsonCorretoCozinhaChinesa)
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-            .when()
+                .when()
                 .post()
-            .then()
+                .then()
                 .statusCode(HttpStatus.CREATED.value());
     }
 
@@ -87,9 +88,9 @@ class CadastroCozinhaIt {
         given()
                 .pathParam("cozinhaId", cozinhaAmericana.getId())
                 .accept(ContentType.JSON)
-            .when()
+                .when()
                 .get("{cozinhaId}")
-            .then()
+                .then()
                 .body("nome", equalTo(cozinhaAmericana.getNome()))
                 .statusCode(HttpStatus.OK.value());
     }
@@ -99,9 +100,9 @@ class CadastroCozinhaIt {
         given()
                 .pathParam("cozinhaId", COZINHA_ID_INEXISTENTE)
                 .accept(ContentType.JSON)
-            .when()
+                .when()
                 .get("{cozinhaId}")
-            .then()
+                .then()
                 .statusCode(HttpStatus.NOT_FOUND.value());
     }
 

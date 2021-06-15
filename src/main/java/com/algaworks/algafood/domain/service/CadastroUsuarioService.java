@@ -1,7 +1,6 @@
 package com.algaworks.algafood.domain.service;
 
 import com.algaworks.algafood.domain.exception.EntidadeEmUsoException;
-import com.algaworks.algafood.domain.exception.FormaPagamentoNaoEncontradaException;
 import com.algaworks.algafood.domain.exception.NegocioException;
 import com.algaworks.algafood.domain.exception.UsuarioNaoEncontradaException;
 import com.algaworks.algafood.domain.model.Usuario;
@@ -22,22 +21,21 @@ public class CadastroUsuarioService {
     private UsuarioRepository usuarioRepository;
 
 
-
     @Transactional
-    public Usuario salvar(Usuario usuario){
+    public Usuario salvar(Usuario usuario) {
         usuarioRepository.detach(usuario);
 
         Optional<Usuario> usuarioExistente = usuarioRepository.findByEmail(usuario.getEmail());
-        if(usuarioExistente.isPresent() && !usuarioExistente.get().equals(usuario)){
+        if (usuarioExistente.isPresent() && !usuarioExistente.get().equals(usuario)) {
             throw new NegocioException(String.format("Já existe um usuário cadastrado com o e-mail %s", usuario.getEmail()));
         }
         return usuarioRepository.save(usuario);
     }
 
     @Transactional
-    public void alterarSenha(Long usuarioId, String senhaAtual, String novaSenha){
+    public void alterarSenha(Long usuarioId, String senhaAtual, String novaSenha) {
         Usuario usuario = buscarOuFalhar(usuarioId);
-        if(usuario.senhaNaoCoincideCom(senhaAtual)){
+        if (usuario.senhaNaoCoincideCom(senhaAtual)) {
             throw new NegocioException("Senha atual informada não coincide com a senha do usuário.");
         }
         usuario.setSenha(novaSenha);

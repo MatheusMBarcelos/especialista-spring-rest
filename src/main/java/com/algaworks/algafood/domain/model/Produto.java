@@ -16,10 +16,10 @@ public class Produto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column( nullable = false)
+    @Column(nullable = false)
     private String nome;
 
-    @Column( nullable = false)
+    @Column(nullable = false)
     private String descricao;
 
     @Column(nullable = false)

@@ -10,7 +10,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @Target({METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE})
 @Retention(RUNTIME)
-@Constraint(validatedBy = { ValorZeroIncluiDescricaoValidator.class })
+@Constraint(validatedBy = {ValorZeroIncluiDescricaoValidator.class})
 public @interface ValorZeroIncluiDescricao {
 
     String message() default "Descrição obrigatoria invalida";
@@ -20,7 +20,9 @@ public @interface ValorZeroIncluiDescricao {
     Class<? extends Payload>[] payload() default {};
 
     String valorField();
+
     String descricaoField();
+
     String descricaoObrigatoria();
 
 }

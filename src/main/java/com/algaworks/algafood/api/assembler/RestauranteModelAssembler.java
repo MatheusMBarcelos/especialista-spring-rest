@@ -1,6 +1,5 @@
 package com.algaworks.algafood.api.assembler;
 
-import com.algaworks.algafood.api.model.CozinhaModel;
 import com.algaworks.algafood.api.model.RestauranteModel;
 import com.algaworks.algafood.domain.model.Restaurante;
 import org.modelmapper.ModelMapper;
@@ -17,7 +16,7 @@ public class RestauranteModelAssembler {
     private ModelMapper modelMapper;
 
     public RestauranteModel toModel(Restaurante restaurante) {
-       return modelMapper.map(restaurante, RestauranteModel.class);
+        return modelMapper.map(restaurante, RestauranteModel.class);
     }
 
     public List<RestauranteModel> toCollectionModel(List<Restaurante> restaurantes) {

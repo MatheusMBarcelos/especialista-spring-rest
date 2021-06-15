@@ -29,5 +29,6 @@ public interface RestauranteRepository extends CustomJpaRepository<Restaurante, 
     boolean existsByNome(String nome);
 
     int countByCozinhaId(long id);
+
     public List<Restaurante> consultar(String nome, BigDecimal taxaFreteInicial, BigDecimal taxaFreteFinal);
 }

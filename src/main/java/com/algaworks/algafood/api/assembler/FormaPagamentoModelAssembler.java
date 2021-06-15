@@ -20,7 +20,7 @@ public class FormaPagamentoModelAssembler {
         return modelMapper.map(formaPagamento, FormaPagamentoModel.class);
     }
 
-    public List<FormaPagamentoModel> toCollectionModel(Collection<FormaPagamento> formaPagamentos){
+    public List<FormaPagamentoModel> toCollectionModel(Collection<FormaPagamento> formaPagamentos) {
         return formaPagamentos.stream()
                 .map(this::toModel).collect(Collectors.toList());
     }

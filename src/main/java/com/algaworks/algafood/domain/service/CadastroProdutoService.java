@@ -1,15 +1,11 @@
 package com.algaworks.algafood.domain.service;
 
-import com.algaworks.algafood.api.model.ProdutoModel;
 import com.algaworks.algafood.domain.exception.ProdutoNaoEncontradoException;
 import com.algaworks.algafood.domain.model.Produto;
-import com.algaworks.algafood.domain.model.Restaurante;
 import com.algaworks.algafood.domain.repository.ProdutoRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 @AllArgsConstructor
