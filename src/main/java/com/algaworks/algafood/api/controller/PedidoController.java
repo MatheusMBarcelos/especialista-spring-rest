@@ -11,7 +11,8 @@ import com.algaworks.algafood.domain.exception.NegocioException;
 import com.algaworks.algafood.domain.model.Pedido;
 import com.algaworks.algafood.domain.model.Usuario;
 import com.algaworks.algafood.domain.repository.PedidoRepository;
-import com.algaworks.algafood.domain.service.*;
+import com.algaworks.algafood.domain.service.CadastroPedidoService;
+import com.algaworks.algafood.domain.service.EmissaoPedidoService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -28,9 +29,6 @@ public class PedidoController {
     private CadastroPedidoService cadastroPedidoService;
     private PedidoModelAssembler pedidoModelAssembler;
     private PedidoResumoModelAssembler pedidoResumoModelAssembler;
-    private CadastroRestauranteService cadastroRestauranteService;
-    private CadastroUsuarioService cadastroUsuarioService;
-    private CadastroFormaPagamentoService cadastroFormaPagamentoService;
     private PedidoInputDisassembler pedidoInputDisassembler;
     private EmissaoPedidoService emissaoPedidoService;
 

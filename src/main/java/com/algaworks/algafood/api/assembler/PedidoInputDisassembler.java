@@ -1,6 +1,5 @@
 package com.algaworks.algafood.api.assembler;
 
-import com.algaworks.algafood.api.model.PedidoModel;
 import com.algaworks.algafood.api.model.input.PedidoInput;
 import com.algaworks.algafood.domain.model.Pedido;
 import lombok.AllArgsConstructor;
