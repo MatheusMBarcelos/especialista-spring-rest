@@ -11,7 +11,6 @@ import com.algaworks.algafood.domain.exception.NegocioException;
 import com.algaworks.algafood.domain.model.Pedido;
 import com.algaworks.algafood.domain.model.Usuario;
 import com.algaworks.algafood.domain.repository.PedidoRepository;
-import com.algaworks.algafood.domain.service.CadastroPedidoService;
 import com.algaworks.algafood.domain.service.EmissaoPedidoService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -26,7 +25,6 @@ import java.util.List;
 public class PedidoController {
 
     private PedidoRepository pedidoRepository;
-    private CadastroPedidoService cadastroPedidoService;
     private PedidoModelAssembler pedidoModelAssembler;
     private PedidoResumoModelAssembler pedidoResumoModelAssembler;
     private PedidoInputDisassembler pedidoInputDisassembler;
@@ -37,9 +35,9 @@ public class PedidoController {
         return pedidoResumoModelAssembler.toCollectionModel(pedidoRepository.findAll());
     }
 
-    @GetMapping("{pedidoId}")
-    public PedidoModel buscar(@PathVariable Long pedidoId) {
-        Pedido pedido = cadastroPedidoService.buscarOuFalhar(pedidoId);
+    @GetMapping("{codigoPedido}")
+    public PedidoModel buscar(@PathVariable String codigoPedido) {
+        Pedido pedido = emissaoPedidoService.buscarOuFalhar(codigoPedido);
         return pedidoModelAssembler.toModel(pedido);
     }
 

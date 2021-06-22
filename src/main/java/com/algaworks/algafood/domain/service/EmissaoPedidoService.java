@@ -1,6 +1,7 @@
 package com.algaworks.algafood.domain.service;
 
 import com.algaworks.algafood.domain.exception.NegocioException;
+import com.algaworks.algafood.domain.exception.PedidoNaoEncontradoException;
 import com.algaworks.algafood.domain.model.*;
 import com.algaworks.algafood.domain.repository.PedidoRepository;
 import lombok.AllArgsConstructor;
@@ -52,5 +53,10 @@ public class EmissaoPedidoService {
             item.setProduto(produto);
             item.setPrecoUnitario(produto.getPreco());
         });
+    }
+
+    public Pedido buscarOuFalhar(String codigoPedido) {
+        return pedidoRepository.findByCodigo(codigoPedido)
+                .orElseThrow(() -> new PedidoNaoEncontradoException(codigoPedido));
     }
 }
