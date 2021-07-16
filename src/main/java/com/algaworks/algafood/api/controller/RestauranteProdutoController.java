@@ -20,7 +20,7 @@ import java.util.List;
 @AllArgsConstructor
 @RestController
 @RequestMapping("/restaurantes/{restauranteId}/produtos")
-public class ProdutoController {
+public class RestauranteProdutoController {
 
     private ProdutoRepository produtoRepository;
 
