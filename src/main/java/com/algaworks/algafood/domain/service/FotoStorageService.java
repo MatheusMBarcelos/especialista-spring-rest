@@ -8,15 +8,15 @@ import java.util.UUID;
 
 public interface FotoStorageService {
 
-    InputStream recuperar(String nomeArquivo);
+    FotoRecuperada recuperar(String nomeArquivo);
 
     void armazenar(NovaFoto novaFoto);
 
     void remover(String nomeArquivo);
 
-    default void substituir(String nomeArquivoAntigo, NovaFoto novaFoto){
+    default void substituir(String nomeArquivoAntigo, NovaFoto novaFoto) {
         armazenar(novaFoto);
-        if(nomeArquivoAntigo != null) {
+        if (nomeArquivoAntigo != null) {
             remover(nomeArquivoAntigo);
         }
     }
@@ -28,7 +28,27 @@ public interface FotoStorageService {
     @Builder
     @Getter
     class NovaFoto {
+
         private String nomeArquivo;
+        private String contentType;
         private InputStream inputStream;
+
+    }
+
+    @Builder
+    @Getter
+    class FotoRecuperada {
+
+        private InputStream inputStream;
+        private String url;
+
+        public boolean temInputStream() {
+            return inputStream != null;
+        }
+
+        public boolean temUrl() {
+            return url != null;
+        }
+
     }
 }
